@@ -27,7 +27,7 @@ jobs:
           gradle-version: '8.13'
 
       - name: Extract project ZIP
-        run: unzip -q Conocimientos_descomprimido.zip
+        run: unzip -q Knowledgess_descomprimido.zip
 
       - name: Build Debug APK
         run: gradle -p Knowledgess_extraido assembleDebug
