@@ -26,16 +26,21 @@ jobs:
         with:
           gradle-version: '9.3.1'
 
-      - name: Extract project ZIP
+            - name: Extract project ZIP
         run: unzip -q Knowledgess_descomprimido.zip
+
       - name: Inspect signing configuration
-        run: |      - name: Show debug signing block
         run: |
-          sed -n '25,65p' Knowledgess_extraido/app/build.gradle.kts
           echo "=== CONFIGURACION DE FIRMA ==="
           grep -n -A 20 -B 10 -E 'signingConfigs|debugConfig|signingConfig|storeFile' Knowledgess_extraido/app/build.gradle.kts || true
+
+      - name: Show debug signing block
+        run: |
+          sed -n '25,65p' Knowledgess_extraido/app/build.gradle.kts
+
       - name: Build Debug APK
         run: gradle -p Knowledgess_extraido assembleDebug
+        
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
