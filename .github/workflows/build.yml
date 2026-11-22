@@ -28,7 +28,10 @@ jobs:
 
       - name: Extract project ZIP
         run: unzip -q Knowledgess_descomprimido.zip
-
+      - name: Inspect signing configuration
+        run: |
+          echo "=== CONFIGURACION DE FIRMA ==="
+          grep -n -A 20 -B 10 -E 'signingConfigs|debugConfig|signingConfig|storeFile' Knowledgess_extraido/app/build.gradle.kts || true
       - name: Build Debug APK
         run: gradle -p Knowledgess_extraido assembleDebug
 
